@@ -1,6 +1,5 @@
-import subprocess
 from subprocess import Popen, PIPE
-
+import os
 
 from .version import Version
 
@@ -8,19 +7,22 @@ from .version import Version
 def highest_tagged_git_version(repo_location):
     """Ask the git repo what the most recent tagged commit on the index is."""
 
-    with subprocess.Popen(
-            ['git', 'describe', '--tags', '--match', 'v[[:digit:]]*', 'HEAD'],
+    with Popen(
+            ['git', 'describe', '--tags', 'HEAD'],
             stdin=PIPE, stdout=PIPE, stderr=PIPE,
-            cwd=os.path.abspath('../'),
+            cwd=os.path.abspath(repo_location),
         ) as cli_cmd:
 
         stdout, stderr = cli_cmd.communicate()
 
-        tag = str(stdout.splitlines()[0], encoding='utf-8')
-    
-    version = Version(tag)
+    tags = str(stdout, encoding='utf-8').splitlines()
+    for tag in tags:
+        try:
+            return Version(tag)
+        except:
+            pass
 
-    return version
+    return None
 
 
 
