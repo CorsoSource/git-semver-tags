@@ -4,6 +4,9 @@ import os
 from .version import Version
 
 
+__all__ = ['highest_tagged_git_version']
+
+
 def highest_tagged_git_version(repo_location):
     """Ask the git repo what the most recent tagged commit on the index is."""
 

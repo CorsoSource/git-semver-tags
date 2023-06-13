@@ -13,6 +13,8 @@
 import re, os, sys
 
 
+__all__ = ['Version']
+
 
 class Version(object):
     """Parses a string and breaks it into bits useful for comparison.
