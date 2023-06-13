@@ -29,7 +29,7 @@ class TupleCompareTestCase(unittest.TestCase):
 
     def test_cases(self):
         # grind over cases
-        for left, right, (lt_ex, eq_ex, gt_ex) in cases:
+        for left, right, (lt_ex, eq_ex, gt_ex) in self.cases:
             self.assertTrue( lt_ex == Version._compare_tuple__lt__(left, right), '<  (__lt__) failed for %r < %r ==> %r' % (left, right, lt_ex)  )
             self.assertTrue( eq_ex == Version._compare_tuple__eq__(left, right), '== (__eq__) failed for %r == %r ==> %r' % (left, right, eq_ex) )
             self.assertTrue( gt_ex == Version._compare_tuple__gt__(left, right), '>  (__gt__) failed for %r > %r ==> %r' % (left, right, gt_ex)  )

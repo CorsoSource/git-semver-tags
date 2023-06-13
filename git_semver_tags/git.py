@@ -16,6 +16,9 @@ def highest_tagged_git_version(repo_location):
         stdout, stderr = cli_cmd.communicate()
 
     tags = str(stdout, encoding='utf-8').splitlines()
+
+    # take the first found by git that's a semver-like tag
+    # (since they're in order)
     for tag in tags:
         try:
             return Version(tag)

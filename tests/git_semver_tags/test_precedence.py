@@ -19,7 +19,7 @@ class PrecedenceTestCase(unittest.TestCase):
 
     def test_cases(self):
         # check all against all subsequent
-        for precedence_cases in precedence_tests:
+        for precedence_cases in self.precedence_tests:
             for i, case in enumerate(precedence_cases[:-1]):
                 case = Version(case)
                 for next_case in precedence_cases[i+1:]:
